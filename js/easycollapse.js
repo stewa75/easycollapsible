@@ -6,7 +6,7 @@ $(document).ready(function(){
 	//************************************************
 	// Capture click on Topic Title and show topic div
 
-	$( ".fheader" ).each( function() {
+	$( ".format_easycollapsible_fheader" ).each( function() {
 
 		$(this).on("click", function (e) {	
 

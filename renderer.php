@@ -31,6 +31,9 @@ defined('MOODLE_INTERNAL') || die();
 
 require_once($CFG->dirroot.'/course/format/topics/renderer.php');
 
+$PAGE->requires->js('/course/format/easycollapsible/js/easycollapse.js');
+//$PAGE->requires->js('/course/format/easycollapsible/js/jquery-3.5.1.min.js');
+$PAGE->requires->jquery();
 
 class format_easycollapsible_renderer extends format_topics_renderer {
 
@@ -42,8 +45,20 @@ class format_easycollapsible_renderer extends format_topics_renderer {
 	protected function start_section_list() {
 	
 		
-	
 	/* Include files general js and css that make Easycollapsible plugin works */
+	
+		
+		
+		
+		echo '
+		
+		<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+	
+		<link href="format/easycollapsible/style.css" rel="stylesheet">
+		';
+		
+		
+	/*
 	echo '
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -54,11 +69,13 @@ class format_easycollapsible_renderer extends format_topics_renderer {
 	
 	<link href="format/easycollapsible/css/style.css" rel="stylesheet">
 	
-	';
+
+	
+	';*/
 		
 	
 
-	echo '<button id="showhideallbtn" type="button" class="btn btn-primary">Show/Hide all</button>';
+	echo '<button id="showhideallbtn" type="button" class="btn btn-primary">'.get_string('showhideall', 'format_easycollapsible').'</button>';
 	
 	echo '<div id="easycollapsetopics">';
 	
@@ -120,8 +137,8 @@ class format_easycollapsible_renderer extends format_topics_renderer {
 				
 			} else {
 				
-				$sectionname = '<a href="#collapsible-'.$section->id.'" class="fheader" >'.$section->name.'</a>';
-				$o .= '<div class="topictitle">'.$sectionname.'</div>';
+				$sectionname = '<a href="#collapsible-'.$section->id.'" class="format_easycollapsible_fheader" >'.$section->name.'</a>';
+				$o .= '<div class="format_easycollapsible_topictitle">'.$sectionname.'</div>';
 				
 			}
 		
@@ -130,11 +147,11 @@ class format_easycollapsible_renderer extends format_topics_renderer {
 			
 			echo '
 			<style>
-			a.fheader.closed:before {
+			a.format_easycollapsible_fheader.closed:before {
 			background:'.$course->collapseiconbackground.'!important;
 
 			}
-			a.fheader:before {
+			a.format_easycollapsible_fheader:before {
 			background:'.$course->collapseiconbackground.'!important;
 
 			}
@@ -146,11 +163,11 @@ class format_easycollapsible_renderer extends format_topics_renderer {
 			
 			echo '
 			<style>
-			a.fheader.closed:before {
+			a.format_easycollapsible_fheader.closed:before {
 
 			color: '.$course->collapseiconcolor.'!important;
 			}
-			a.fheader:before {
+			a.format_easycollapsible_fheader:before {
 
 			color: '.$course->collapseiconcolor.'!important;
 			}
@@ -161,7 +178,7 @@ class format_easycollapsible_renderer extends format_topics_renderer {
 			
 			echo '
 			<style>
-			.section .topictitle {
+			.section .format_easycollapsible_topictitle {
 			background-color: '.$course->collapsetitlebackground.'!important;		
 			}
 			</style>
@@ -171,7 +188,7 @@ class format_easycollapsible_renderer extends format_topics_renderer {
 			
 			echo '
 			<style>
-			.section .topictitle {
+			.section .format_easycollapsible_topictitle {
 			color: '.$course->collapsetitlecolor.'!important;	
 			}
 			</style>
@@ -181,7 +198,7 @@ class format_easycollapsible_renderer extends format_topics_renderer {
 			
 			echo '
 			<style>
-			.section .topictitle {
+			.section .format_easycollapsible_topictitle {
 			background-color: '.$course->collapsetitlebackground.'!important;
 			}
 			</style>
@@ -191,7 +208,7 @@ class format_easycollapsible_renderer extends format_topics_renderer {
 			
 			echo '
 			<style>
-			.section .topictitle {
+			.section .format_easycollapsible_topictitle {
 			border-bottom: '.$course->collapsetitlebordercolor.'!important;
 			}
 			</style>
@@ -278,7 +295,7 @@ class format_easycollapsible_renderer extends format_topics_renderer {
                 continue;
             }
 			
-            if (!$this->page->user_is_editing() && $course->coursedisplay == COURSE_DISPLAY_MULTIPAGE) {
+           if (!$this->page->user_is_editing() && $course->coursedisplay == COURSE_DISPLAY_MULTIPAGE) {
                 // Display section summary only.
                 echo $this->section_summary($thissection, $course, null);
 				
@@ -287,7 +304,7 @@ class format_easycollapsible_renderer extends format_topics_renderer {
                 echo $this->section_header($thissection, $course, false, 0);
 				
                 if ($thissection->uservisible) {
-					
+
 				/* Choose how to show the div if visible or not */
 				if ($course->collapsefirst == 1 && $thissection->section == 1 || $course->collapsesecond == 1 && $thissection->section == 2 || $course->collapselast == 1  && $thissection->section == $course->numsections){
 

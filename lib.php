@@ -57,12 +57,12 @@ class format_easycollapsible extends format_topics {
         if ($courseformatoptions === false) {
             
 		$courseconfig = get_config('moodlecourse');
-		/*
+		
 			$courseformatoptions['numsections'] = array(
 			'default' => $sectionscount,
 			'type' => PARAM_INT,
 			);
-			*/
+			
 				
 			/* Collapse hidden topic format Op */
            /* $courseformatoptions['hiddensections'] = array(
@@ -128,14 +128,14 @@ class format_easycollapsible extends format_topics {
 			
 				$courseformatoptions['collapseiconbackground'] = array(
 				'default' => '#C11600',
-				'type' => PARAM_RAW,
+				'type' => PARAM_TEXT,
             	);
 				
 			} else {
 				
 				$courseformatoptions['collapseiconbackground'] = array(
 				'default' => get_config('format_easycollapsible', 'collapseiconbackground'),
-				'type' => PARAM_RAW,
+				'type' => PARAM_TEXT,
             	);				
 				
 			}
@@ -146,14 +146,14 @@ class format_easycollapsible extends format_topics {
 				
 				$courseformatoptions['collapseiconcolor'] = array(
                 'default' => '#ffffff',
-                'type' => PARAM_RAW,
+                'type' => PARAM_TEXT,
             	);
 				
 			} else {
 				
 				$courseformatoptions['collapseiconcolor'] = array(
                 'default' => get_config('format_easycollapsible', 'collapseiconcolor'),
-                'type' => PARAM_RAW,
+                'type' => PARAM_TEXT,
             	);				
 			}
 
@@ -163,14 +163,14 @@ class format_easycollapsible extends format_topics {
 			
 				$courseformatoptions['collapsetitlebackground'] = array(
                 'default' => '#f5f5f5',
-                'type' => PARAM_RAW,
+                'type' => PARAM_TEXT,
 				);
 				
 			} else {
 				
 				$courseformatoptions['collapsetitlebackground'] = array(
                 'default' => get_config('format_easycollapsible', 'collapsetitlebackground'),
-                'type' => PARAM_RAW,
+                'type' => PARAM_TEXT,
 				);
 				
 			}
@@ -180,14 +180,14 @@ class format_easycollapsible extends format_topics {
 			
 				$courseformatoptions['collapsetitlecolor'] = array(
                 'default' => '#333333',
-                'type' => PARAM_RAW,
+                'type' => PARAM_TEXT,
             	);
 				
 			} else {
 				
 				$courseformatoptions['collapsetitlecolor'] = array(
                 'default' => get_config('format_easycollapsible', 'collapsetitlecolor'),
-                'type' => PARAM_RAW,
+                'type' => PARAM_TEXT,
             	);
 			}
 			
@@ -196,14 +196,14 @@ class format_easycollapsible extends format_topics {
 			
 				$courseformatoptions['collapsetitlebordercolor'] = array(
                 'default' => '#dddddd',
-                'type' => PARAM_RAW,
+                'type' => PARAM_TEXT,
             	);
 			
 			} else {
 				
 				$courseformatoptions['collapsetitlebordercolor'] = array(
                 'default' => get_config('format_easycollapsible', 'collapsetitlebordercolor'),
-                'type' => PARAM_RAW,
+                'type' => PARAM_TEXT,
 				);
 			}
 			
@@ -248,13 +248,12 @@ class format_easycollapsible extends format_topics {
                 $sectionmenu[$i] = "$i";
             }
 			
-/*
             $courseformatoptionsedit['numsections'] = array(
                 'label' => new lang_string('numberweeks'),
                 'element_type' => 'select',
                 'element_attributes' => array($sectionmenu),
             );
-
+/*
             $courseformatoptionsedit['hiddensections'] = array(
                 'label' => new lang_string('hiddensections'),
                 'help' => 'hiddensections',
@@ -269,7 +268,7 @@ class format_easycollapsible extends format_topics {
             );*/
 			
             $courseformatoptionsedit['collapsefirst'] = array(
-				'label' => get_string('collapsefirst_op', 'format_easycollapsible'),
+				'label' => get_string('collapsefirst', 'format_easycollapsible'),
                 'help' => 'collapsefirst',
                 'help_component' => 'format_easycollapsible',
                 'element_type' => 'select',
@@ -282,7 +281,7 @@ class format_easycollapsible extends format_topics {
             );
 			
             $courseformatoptionsedit['collapsesecond'] = array(
-				'label' => get_string('collapsesecond_op', 'format_easycollapsible'),
+				'label' => get_string('collapsesecond', 'format_easycollapsible'),
                 'help' => 'collapsesecond',
                 'help_component' => 'format_easycollapsible',
                 'element_type' => 'select',
@@ -295,8 +294,8 @@ class format_easycollapsible extends format_topics {
             );	
 			
             $courseformatoptionsedit['collapselast'] = array(
-				'label' => get_string('collapselast_op', 'format_easycollapsible'),
-                'help' => 'collapslast',
+				'label' => get_string('collapselast', 'format_easycollapsible'),
+                'help' => 'collapselast',
                 'help_component' => 'format_easycollapsible',
                 'element_type' => 'select',
                 'element_attributes' => array(
@@ -308,7 +307,7 @@ class format_easycollapsible extends format_topics {
             );
 			
 			$courseformatoptionsedit['collapseiconbackground'] = array(
-				'label' => get_string('collapseiconbackground_op', 'format_easycollapsible'),
+				'label' => get_string('collapseiconbackground', 'format_easycollapsible'),
                 'help' => 'collapseiconbackground',
                 'help_component' => 'format_easycollapsible',
                 'element_type' => 'text',
@@ -322,7 +321,7 @@ class format_easycollapsible extends format_topics {
 			
 
 			$courseformatoptionsedit['collapseiconcolor'] = array(
-				'label' => get_string('collapseiconcolor_op', 'format_easycollapsible'),
+				'label' => get_string('collapseiconcolor', 'format_easycollapsible'),
                 'help' => 'collapseiconcolor',
                 'help_component' => 'format_easycollapsible',
                 'element_type' => 'text',
@@ -335,7 +334,7 @@ class format_easycollapsible extends format_topics {
             );
 			
 			$courseformatoptionsedit['collapsetitlebackground'] = array(
-				'label' => get_string('collapsetitlebackground_op', 'format_easycollapsible'),
+				'label' => get_string('collapsetitlebackground', 'format_easycollapsible'),
                 'help' => 'collapsetitlebackground',
                 'help_component' => 'format_easycollapsible',
                 'element_type' => 'text',
@@ -348,7 +347,7 @@ class format_easycollapsible extends format_topics {
             );
 
 			$courseformatoptionsedit['collapsetitlecolor'] = array(
-				'label' => get_string('collapsetitlecolor_op', 'format_easycollapsible'),
+				'label' => get_string('collapsetitlecolor', 'format_easycollapsible'),
                 'help' => 'collapsetitlecolor',
                 'help_component' => 'format_easycollapsible',
                 'element_type' => 'text',
@@ -362,7 +361,7 @@ class format_easycollapsible extends format_topics {
 
 			
 			$courseformatoptionsedit['collapsetitlebordercolor'] = array(
-				'label' => get_string('collapsetitlebordercolor_op', 'format_easycollapsible'),
+				'label' => get_string('collapsetitlebordercolor', 'format_easycollapsible'),
                 'help' => 'collapsetitlebordercolor',
                 'help_component' => 'format_easycollapsible',
                 'element_type' => 'text',
@@ -375,7 +374,7 @@ class format_easycollapsible extends format_topics {
             );
 			
 			$courseformatoptionsedit['collapsetopicsspacing'] = array(
-				'label' => get_string('collapsetopicsspacing_op', 'format_easycollapsible'),
+				'label' => get_string('collapsetopicsspacing', 'format_easycollapsible'),
                 'help' => 'collapsetopicsspacing',
                 'help_component' => 'format_easycollapsible',
                 'element_type' => 'text',
