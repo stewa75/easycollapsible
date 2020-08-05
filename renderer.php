@@ -54,7 +54,7 @@ class format_easycollapsible_renderer extends format_topics_renderer {
 		
 		<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
 	
-		<link href="format/easycollapsible/style.css" rel="stylesheet">
+		<link href="format/easycollapsible/styles.css" rel="stylesheet">
 		';
 		
 		
@@ -104,17 +104,17 @@ class format_easycollapsible_renderer extends format_topics_renderer {
 
         $o .= html_writer::start_tag('li', [
             'id' => 'section-'.$section->section,
-            'class' => 'section main clearfix'.$sectionstyle,
+            'class' => 'format-easycollapsible_section format-easycollapsible_main clearfix'.$sectionstyle,
             'role' => 'region',
             'aria-labelledby' => "sectionid-{$section->id}-title",
             'data-sectionid' => $section->section
         ]);
 
         $leftcontent = $this->section_left_content($section, $course, $onsectionpage);
-        $o.= html_writer::tag('div', $leftcontent, array('class' => 'left side'));
+        $o.= html_writer::tag('div', $leftcontent, array('class' => 'format-easycollapsible_left format-easycollapsible_side'));
 
         $rightcontent = $this->section_right_content($section, $course, $onsectionpage);
-        $o.= html_writer::tag('div', $rightcontent, array('class' => 'right side'));
+        $o.= html_writer::tag('div', $rightcontent, array('class' => 'format-easycollapsible_right format-easycollapsible_side'));
         $o.= html_writer::start_tag('div', array('class' => 'content'));
 
         // When not on a section page, we display the section titles except the general section if null
@@ -137,8 +137,8 @@ class format_easycollapsible_renderer extends format_topics_renderer {
 				
 			} else {
 				
-				$sectionname = '<a href="#collapsible-'.$section->id.'" class="format_easycollapsible_fheader" >'.$section->name.'</a>';
-				$o .= '<div class="format_easycollapsible_topictitle">'.$sectionname.'</div>';
+				$sectionname = '<a href="#collapsible-'.$section->id.'" class="format-easycollapsible_fheader" >'.$section->name.'</a>';
+				$o .= '<div class="format-easycollapsible_topictitle">'.$sectionname.'</div>';
 				
 			}
 		
@@ -147,11 +147,11 @@ class format_easycollapsible_renderer extends format_topics_renderer {
 			
 			echo '
 			<style>
-			a.format_easycollapsible_fheader.closed:before {
+			a.format-easycollapsible_fheader.closed:before {
 			background:'.$course->collapseiconbackground.'!important;
 
 			}
-			a.format_easycollapsible_fheader:before {
+			a.format-easycollapsible_fheader:before {
 			background:'.$course->collapseiconbackground.'!important;
 
 			}
@@ -163,11 +163,11 @@ class format_easycollapsible_renderer extends format_topics_renderer {
 			
 			echo '
 			<style>
-			a.format_easycollapsible_fheader.closed:before {
+			a.format-easycollapsible_fheader.closed:before {
 
 			color: '.$course->collapseiconcolor.'!important;
 			}
-			a.format_easycollapsible_fheader:before {
+			a.format-easycollapsible_fheader:before {
 
 			color: '.$course->collapseiconcolor.'!important;
 			}
@@ -178,7 +178,7 @@ class format_easycollapsible_renderer extends format_topics_renderer {
 			
 			echo '
 			<style>
-			.section .format_easycollapsible_topictitle {
+			.format-easycollapsible_section .format-easycollapsible_topictitle {
 			background-color: '.$course->collapsetitlebackground.'!important;		
 			}
 			</style>
@@ -188,7 +188,7 @@ class format_easycollapsible_renderer extends format_topics_renderer {
 			
 			echo '
 			<style>
-			.section .format_easycollapsible_topictitle {
+			.format-easycollapsible_section .format-easycollapsible_topictitle {
 			color: '.$course->collapsetitlecolor.'!important;	
 			}
 			</style>
@@ -198,7 +198,7 @@ class format_easycollapsible_renderer extends format_topics_renderer {
 			
 			echo '
 			<style>
-			.section .format_easycollapsible_topictitle {
+			.format-easycollapsible_section .format-easycollapsible_topictitle {
 			background-color: '.$course->collapsetitlebackground.'!important;
 			}
 			</style>
@@ -208,7 +208,7 @@ class format_easycollapsible_renderer extends format_topics_renderer {
 			
 			echo '
 			<style>
-			.section .format_easycollapsible_topictitle {
+			.format-easycollapsible_section .format-easycollapsible_topictitle {
 			border-bottom: '.$course->collapsetitlebordercolor.'!important;
 			}
 			</style>
@@ -218,7 +218,7 @@ class format_easycollapsible_renderer extends format_topics_renderer {
 			
 			echo '
 			<style>
-			.course-content ul li.section.main {
+			.course-content ul li.format-easycollapsible_section.format-easycollapsible_main {
 					margin-bottom:'.$course->collapsetopicsspacing.'px!important;
 			}
 			</style>
@@ -309,11 +309,11 @@ class format_easycollapsible_renderer extends format_topics_renderer {
 				if ($course->collapsefirst == 1 && $thissection->section == 1 || $course->collapsesecond == 1 && $thissection->section == 2 || $course->collapselast == 1  && $thissection->section == $course->numsections){
 
 
-					echo '<div class="easycollapse showed" id="collapsible-'.$thissection->id.'" >';
+					echo '<div class="format-easycollapsible format-easycollapsible_showed" id="collapsible-'.$thissection->id.'" >';
 
 				} else {
 
-					echo '<div class="easycollapse multi-collapse" id="collapsible-'.$thissection->id.'">';
+					echo '<div class="format-easycollapsible format-easycollapsible_multi-collapse" id="collapsible-'.$thissection->id.'">';
 
 				}
 
