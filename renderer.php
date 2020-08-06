@@ -50,12 +50,7 @@ class format_easycollapsible_renderer extends format_topics_renderer {
 		
 		
 		
-		echo '
-		
-		<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
-	
-		<link href="format/easycollapsible/styles.css" rel="stylesheet">
-		';
+		echo '<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">';
 		
 		
 	/*
