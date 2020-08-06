@@ -31,4 +31,4 @@ $plugin->version = 2020071601;
 $plugin->maturity = MATURITY_STABLE;
 $plugin->requires  = 2019111800.00;
 $plugin->component = 'format_easycollapsible';
-$plugin->release = '1.7';
+$plugin->release = '1.7.2';
