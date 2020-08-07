@@ -33,4 +33,4 @@ Yes, but I do not like it, it was too complex and it didn't work good with my La
 - theme independent
 - really smart
 
-It has been tested on lambda and boost. If you have any problem please visit the page:
+It has been tested on Lambda and Boost. If you have any problem please visit the page:
