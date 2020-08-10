@@ -32,10 +32,7 @@ require_once($CFG->dirroot . '/course/format/topics/lib.php'); // For format_bas
 require_once($CFG->dirroot . '/lib/classes/output/icon_system_fontawesome.php');
 
 class format_easycollapsible extends format_topics {
-    
-    
-    
-    
+
     /**
      * course_format_options
      *
@@ -43,17 +40,17 @@ class format_easycollapsible extends format_topics {
      * @return array
      */
     public function course_format_options($foreditform = false) {
-        
+
         global $PAGE;
-        
+
         static $courseformatoptions = false;
-        
+
         /* How many sections the course has? */
         $modinfo       = get_fast_modinfo($PAGE->course);
         $sections      = $modinfo->get_section_info_all();
         $sectionscount = count($sections);
         /* Fine */
-        
+
         if ($courseformatoptions === false) {
             
             $courseconfig = get_config('moodlecourse');
@@ -62,32 +59,30 @@ class format_easycollapsible extends format_topics {
                 'default' => $sectionscount,
                 'type' => PARAM_INT
             );
-            
-            
+
             /* Collapse hidden topic format Op */
             /* $courseformatoptions['hiddensections'] = array(
             'default' => $courseconfig->hiddensections,
             'type' => PARAM_INT,
             );*/
-            
-            
+
             /* Collapse first topic Op */
             if (!get_config('format_easycollapsible', 'collapsefirst')) {
-                
+
                 $courseformatoptions['collapsefirst'] = array(
                     'default' => 0,
                     'type' => PARAM_INT
                 );
-                
+
             } else {
-                
+
                 $courseformatoptions['collapsefirst'] = array(
                     'default' => get_config('format_easycollapsible', 'collapsefirst'),
                     'type' => PARAM_INT
                 );
             }
-            
-            
+
+
             /* Collapse second topic Op */
             if (!get_config('format_easycollapsible', 'collapsesecond')) {
                 
@@ -95,27 +90,27 @@ class format_easycollapsible extends format_topics {
                     'default' => 0,
                     'type' => PARAM_INT
                 );
-                
+
             } else {
-                
+
                 $courseformatoptions['collapsesecond'] = array(
                     'default' => get_config('format_easycollapsible', 'collapsesecond'),
                     'type' => PARAM_INT
                 );
-                
+
             }
-            
-            
+
+
             /* Collapse last topic Op */
             if (!get_config('format_easycollapsible', 'collapselast')) {
-                
+
                 $courseformatoptions['collapselast'] = array(
                     'default' => 0,
                     'type' => PARAM_INT
                 );
-                
+
             } else {
-                
+
                 $courseformatoptions['collapselast'] = array(
                     'default' => get_config('format_easycollapsible', 'collapselast'),
                     'type' => PARAM_INT
@@ -130,14 +125,14 @@ class format_easycollapsible extends format_topics {
                     'default' => '#C11600',
                     'type' => PARAM_TEXT
                 );
-                
+
             } else {
-                
+
                 $courseformatoptions['collapseiconbackground'] = array(
                     'default' => get_config('format_easycollapsible', 'collapseiconbackground'),
                     'type' => PARAM_TEXT
                 );
-                
+
             }
             
             
@@ -156,98 +151,94 @@ class format_easycollapsible extends format_topics {
                     'type' => PARAM_TEXT
                 );
             }
-            
-            
+
+
             /* Title background color Op */
             if (!get_config('format_easycollapsible', 'collapsetitlebackground')) {
-                
+
                 $courseformatoptions['collapsetitlebackground'] = array(
                     'default' => '#f5f5f5',
                     'type' => PARAM_TEXT
                 );
-                
+
             } else {
-                
+
                 $courseformatoptions['collapsetitlebackground'] = array(
                     'default' => get_config('format_easycollapsible', 'collapsetitlebackground'),
                     'type' => PARAM_TEXT
                 );
-                
+
             }
-            
+
             /* Title font color Op */
             if (!get_config('format_easycollapsible', 'collapsetitlecolor')) {
-                
+
                 $courseformatoptions['collapsetitlecolor'] = array(
                     'default' => '#333333',
                     'type' => PARAM_TEXT
                 );
-                
+
             } else {
-                
-                $courseformatoptions['collapsetitlecolor'] = array(
+
+				$courseformatoptions['collapsetitlecolor'] = array(
                     'default' => get_config('format_easycollapsible', 'collapsetitlecolor'),
                     'type' => PARAM_TEXT
                 );
             }
-            
+
             /* Title border color Op */
             if (!get_config('format_easycollapsible', 'collapsetitlebordercolor')) {
-                
+
                 $courseformatoptions['collapsetitlebordercolor'] = array(
                     'default' => '#dddddd',
                     'type' => PARAM_TEXT
                 );
-                
+
             } else {
-                
+
                 $courseformatoptions['collapsetitlebordercolor'] = array(
                     'default' => get_config('format_easycollapsible', 'collapsetitlebordercolor'),
                     'type' => PARAM_TEXT
                 );
             }
-            
-            
+
+
             /* Topic Spacing Op */
             if (!get_config('format_easycollapsible', 'collapsetopicsspacing')) {
-                
+
                 $courseformatoptions['collapsetopicsspacing'] = array(
                     //'default' => get_config('format_easycollapsible', 'collapsetopicsspacing'),
                     'default' => 10,
                     'type' => PARAM_INT
                 );
-                
-                
+
+
             } else {
-                
+
                 $courseformatoptions['collapsetopicsspacing'] = array(
                     //'default' => get_config('format_easycollapsible', 'collapsetopicsspacing'),
                     'default' => get_config('format_easycollapsible', 'collapsetopicsspacing'),
                     'type' => PARAM_INT
                 );
-                
+
             }
-            
+
         }
-        
+
         if ($foreditform && !isset($courseformatoptions['coursedisplay']['label'])) {
-            
-            
+
             $courseconfig = get_config('moodlecourse');
-            
-            
-            
+
             $max = $courseconfig->maxsections;
             if (!isset($max) || !is_numeric($max)) {
                 $max = 52;
             }
-            
-            
+
             $sectionmenu = array();
             for ($i = 0; $i <= $max; $i++) {
                 $sectionmenu[$i] = "$i";
             }
-            
+
             $courseformatoptionsedit['numsections'] = array(
                 'label' => new lang_string('numberweeks'),
                 'element_type' => 'select',
@@ -268,7 +259,7 @@ class format_easycollapsible extends format_topics {
             )
             ),
             );*/
-            
+
             $courseformatoptionsedit['collapsefirst'] = array(
                 'label' => get_string('collapsefirst', 'format_easycollapsible'),
                 'help' => 'collapsefirst',
@@ -281,7 +272,7 @@ class format_easycollapsible extends format_topics {
                     )
                 )
             );
-            
+
             $courseformatoptionsedit['collapsesecond'] = array(
                 'label' => get_string('collapsesecond', 'format_easycollapsible'),
                 'help' => 'collapsesecond',
@@ -294,7 +285,7 @@ class format_easycollapsible extends format_topics {
                     )
                 )
             );
-            
+
             $courseformatoptionsedit['collapselast'] = array(
                 'label' => get_string('collapselast', 'format_easycollapsible'),
                 'help' => 'collapselast',
