@@ -32,209 +32,209 @@ require_once($CFG->dirroot. '/course/format/topics/lib.php'); // For format_base
 require_once($CFG->dirroot. '/lib/classes/output/icon_system_fontawesome.php');
 
 class format_easycollapsible extends format_topics {
-	
-	
-	
 
-	 /**
-	 * course_format_options
-	 *
-	 * @param bool $foreditform
-	 * @return array
-	 */
+
+
+
+ /**
+ * course_format_options
+ *
+ * @param bool $foreditform
+ * @return array
+ */
     public function course_format_options($foreditform = false) {
-		
+
         global $PAGE;
 
         static $courseformatoptions = false;
-		
-		/* How many sections the course has? */
-		$modinfo = get_fast_modinfo($PAGE->course);
+
+/* How many sections the course has? */
+$modinfo = get_fast_modinfo($PAGE->course);
         $sections = $modinfo->get_section_info_all();
-		$sectionscount = count ($sections);
-		/* Fine */
+$sectionscount = count ($sections);
+/* Fine */
 
         if ($courseformatoptions === false) {
             
-		$courseconfig = get_config('moodlecourse');
-		
-			$courseformatoptions['numsections'] = array(
-			'default' => $sectionscount,
-			'type' => PARAM_INT,
-			);
-			
-				
-			/* Collapse hidden topic format Op */
+$courseconfig = get_config('moodlecourse');
+
+$courseformatoptions['numsections'] = array(
+'default' => $sectionscount,
+'type' => PARAM_INT,
+);
+
+
+/* Collapse hidden topic format Op */
            /* $courseformatoptions['hiddensections'] = array(
                 'default' => $courseconfig->hiddensections,
                 'type' => PARAM_INT,
             );*/
 
-			
-			/* Collapse first topic Op */	
-			if (!get_config('format_easycollapsible', 'collapsefirst')) {
-				
-            	$courseformatoptions['collapsefirst'] = array(
+
+/* Collapse first topic Op */
+if (!get_config('format_easycollapsible', 'collapsefirst')) {
+
+            $courseformatoptions['collapsefirst'] = array(
                 'default' => 0,
                 'type' => PARAM_INT,
-				);
-				
-			} else {
-				
-            	$courseformatoptions['collapsefirst'] = array(
+);
+
+} else {
+
+            $courseformatoptions['collapsefirst'] = array(
                 'default' => get_config('format_easycollapsible', 'collapsefirst'),
                 'type' => PARAM_INT,
-				);				
-			}
-			
-			
-			/* Collapse second topic Op */	
-			if (!get_config('format_easycollapsible', 'collapsesecond')) {
-				
-				$courseformatoptions['collapsesecond'] = array(
+);
+}
+
+
+/* Collapse second topic Op */
+if (!get_config('format_easycollapsible', 'collapsesecond')) {
+
+$courseformatoptions['collapsesecond'] = array(
                 'default' => 0,
                 'type' => PARAM_INT,
-            	);
-			
-			} else {
-				
-				$courseformatoptions['collapsesecond'] = array(
+            );
+
+} else {
+
+$courseformatoptions['collapsesecond'] = array(
                 'default' => get_config('format_easycollapsible', 'collapsesecond'),
                 'type' => PARAM_INT,
-            	);				
-				
-			}
+            );
 
-			
-			/* Collapse last topic Op */
-			if (!get_config('format_easycollapsible', 'collapselast')) {
-			
-				$courseformatoptions['collapselast'] = array(
+}
+
+
+/* Collapse last topic Op */
+if (!get_config('format_easycollapsible', 'collapselast')) {
+
+$courseformatoptions['collapselast'] = array(
                 'default' => 0,
                 'type' => PARAM_INT,
-            	);
-				
-			} else {
-				
-				$courseformatoptions['collapselast'] = array(
+            );
+
+} else {
+
+$courseformatoptions['collapselast'] = array(
                 'default' => get_config('format_easycollapsible', 'collapselast'),
                 'type' => PARAM_INT,
-            	);				
-				
-			}
-			
-			/* Icon background color Op */
-			if (!get_config('format_easycollapsible', 'collapseiconbackground')) {
-			
-				$courseformatoptions['collapseiconbackground'] = array(
-				'default' => '#C11600',
-				'type' => PARAM_TEXT,
-            	);
-				
-			} else {
-				
-				$courseformatoptions['collapseiconbackground'] = array(
-				'default' => get_config('format_easycollapsible', 'collapseiconbackground'),
-				'type' => PARAM_TEXT,
-            	);				
-				
-			}
-				
-				
-			/* Icon color Op */
-			if (!get_config('format_easycollapsible', 'collapseiconcolor')) {
-				
-				$courseformatoptions['collapseiconcolor'] = array(
+            );
+
+}
+
+/* Icon background color Op */
+if (!get_config('format_easycollapsible', 'collapseiconbackground')) {
+
+$courseformatoptions['collapseiconbackground'] = array(
+'default' => '#C11600',
+'type' => PARAM_TEXT,
+            );
+
+} else {
+
+$courseformatoptions['collapseiconbackground'] = array(
+'default' => get_config('format_easycollapsible', 'collapseiconbackground'),
+'type' => PARAM_TEXT,
+            );
+
+}
+
+
+/* Icon color Op */
+if (!get_config('format_easycollapsible', 'collapseiconcolor')) {
+
+$courseformatoptions['collapseiconcolor'] = array(
                 'default' => '#ffffff',
                 'type' => PARAM_TEXT,
-            	);
-				
-			} else {
-				
-				$courseformatoptions['collapseiconcolor'] = array(
+            );
+
+} else {
+
+$courseformatoptions['collapseiconcolor'] = array(
                 'default' => get_config('format_easycollapsible', 'collapseiconcolor'),
                 'type' => PARAM_TEXT,
-            	);				
-			}
+            );
+}
 
-			
-			/* Title background color Op */	
-			if (!get_config('format_easycollapsible', 'collapsetitlebackground')) {
-			
-				$courseformatoptions['collapsetitlebackground'] = array(
+
+/* Title background color Op */
+if (!get_config('format_easycollapsible', 'collapsetitlebackground')) {
+
+$courseformatoptions['collapsetitlebackground'] = array(
                 'default' => '#f5f5f5',
                 'type' => PARAM_TEXT,
-				);
-				
-			} else {
-				
-				$courseformatoptions['collapsetitlebackground'] = array(
+);
+
+} else {
+
+$courseformatoptions['collapsetitlebackground'] = array(
                 'default' => get_config('format_easycollapsible', 'collapsetitlebackground'),
                 'type' => PARAM_TEXT,
-				);
-				
-			}
-			
-			/* Title font color Op */	
-			if (!get_config('format_easycollapsible', 'collapsetitlecolor')) {
-			
-				$courseformatoptions['collapsetitlecolor'] = array(
+);
+
+}
+
+/* Title font color Op */
+if (!get_config('format_easycollapsible', 'collapsetitlecolor')) {
+
+$courseformatoptions['collapsetitlecolor'] = array(
                 'default' => '#333333',
                 'type' => PARAM_TEXT,
-            	);
-				
-			} else {
-				
-				$courseformatoptions['collapsetitlecolor'] = array(
+            );
+
+} else {
+
+$courseformatoptions['collapsetitlecolor'] = array(
                 'default' => get_config('format_easycollapsible', 'collapsetitlecolor'),
                 'type' => PARAM_TEXT,
-            	);
-			}
-			
-			/* Title border color Op */	
-			if (!get_config('format_easycollapsible', 'collapsetitlebordercolor')) {
-			
-				$courseformatoptions['collapsetitlebordercolor'] = array(
+            );
+}
+
+/* Title border color Op */
+if (!get_config('format_easycollapsible', 'collapsetitlebordercolor')) {
+
+$courseformatoptions['collapsetitlebordercolor'] = array(
                 'default' => '#dddddd',
                 'type' => PARAM_TEXT,
-            	);
-			
-			} else {
-				
-				$courseformatoptions['collapsetitlebordercolor'] = array(
+            );
+
+} else {
+
+$courseformatoptions['collapsetitlebordercolor'] = array(
                 'default' => get_config('format_easycollapsible', 'collapsetitlebordercolor'),
                 'type' => PARAM_TEXT,
-				);
-			}
-			
-			
-			/* Topic Spacing Op */	
-			if (!get_config('format_easycollapsible', 'collapsetopicsspacing')) {
-				
-				$courseformatoptions['collapsetopicsspacing'] = array(
-                //'default' => get_config('format_easycollapsible', 'collapsetopicsspacing'),
-				'default' => 10,
-                'type' => PARAM_INT,
-            	);
-				
-				
-			} else {
-				
-				$courseformatoptions['collapsetopicsspacing'] = array(
-                //'default' => get_config('format_easycollapsible', 'collapsetopicsspacing'),
-				'default' => get_config('format_easycollapsible', 'collapsetopicsspacing'),
-                'type' => PARAM_INT,
-            	);
-				
-			}
-			
-        }
-		
-        if ($foreditform && !isset($courseformatoptions['coursedisplay']['label'])) {
-			
+);
+}
 
-			$courseconfig = get_config('moodlecourse');
-			
+
+/* Topic Spacing Op */
+if (!get_config('format_easycollapsible', 'collapsetopicsspacing')) {
+
+$courseformatoptions['collapsetopicsspacing'] = array(
+                //'default' => get_config('format_easycollapsible', 'collapsetopicsspacing'),
+'default' => 10,
+                'type' => PARAM_INT,
+            );
+
+
+} else {
+
+$courseformatoptions['collapsetopicsspacing'] = array(
+                //'default' => get_config('format_easycollapsible', 'collapsetopicsspacing'),
+'default' => get_config('format_easycollapsible', 'collapsetopicsspacing'),
+                'type' => PARAM_INT,
+            );
+
+}
+
+        }
+
+        if ($foreditform && !isset($courseformatoptions['coursedisplay']['label'])) {
+
+
+$courseconfig = get_config('moodlecourse');
+
 
 
             $max = $courseconfig->maxsections;
@@ -242,12 +242,12 @@ class format_easycollapsible extends format_topics {
                 $max = 52;
             }
 
-			
+
             $sectionmenu = array();
             for ($i = 0; $i <= $max; $i++) {
                 $sectionmenu[$i] = "$i";
             }
-			
+
             $courseformatoptionsedit['numsections'] = array(
                 'label' => new lang_string('numberweeks'),
                 'element_type' => 'select',
@@ -266,22 +266,22 @@ class format_easycollapsible extends format_topics {
                     )
                 ),
             );*/
-			
+
             $courseformatoptionsedit['collapsefirst'] = array(
-				'label' => get_string('collapsefirst', 'format_easycollapsible'),
+'label' => get_string('collapsefirst', 'format_easycollapsible'),
                 'help' => 'collapsefirst',
                 'help_component' => 'format_easycollapsible',
                 'element_type' => 'select',
                 'element_attributes' => array(
                     array(
-						0 => get_string('yes', 'format_easycollapsible'),
-						1 => get_string('no', 'format_easycollapsible')
+0 => get_string('yes', 'format_easycollapsible'),
+1 => get_string('no', 'format_easycollapsible')
                     ),
                 ),
             );
-			
+
             $courseformatoptionsedit['collapsesecond'] = array(
-				'label' => get_string('collapsesecond', 'format_easycollapsible'),
+'label' => get_string('collapsesecond', 'format_easycollapsible'),
                 'help' => 'collapsesecond',
                 'help_component' => 'format_easycollapsible',
                 'element_type' => 'select',
@@ -291,10 +291,10 @@ class format_easycollapsible extends format_topics {
                         1 => get_string('no', 'format_easycollapsible'),
                     ),
                 ),
-            );	
-			
+            );
+
             $courseformatoptionsedit['collapselast'] = array(
-				'label' => get_string('collapselast', 'format_easycollapsible'),
+'label' => get_string('collapselast', 'format_easycollapsible'),
                 'help' => 'collapselast',
                 'help_component' => 'format_easycollapsible',
                 'element_type' => 'select',
@@ -305,87 +305,87 @@ class format_easycollapsible extends format_topics {
                     ),
                 ),
             );
-			
-			$courseformatoptionsedit['collapseiconbackground'] = array(
-				'label' => get_string('collapseiconbackground', 'format_easycollapsible'),
+
+$courseformatoptionsedit['collapseiconbackground'] = array(
+'label' => get_string('collapseiconbackground', 'format_easycollapsible'),
                 'help' => 'collapseiconbackground',
                 'help_component' => 'format_easycollapsible',
                 'element_type' => 'text',
-				'element_attributes' => array(
-					 array(
-						'size' => '8', 
-						'maxlength' => '7',
-					 ),
-				),
-            );	
-			
+'element_attributes' => array(
+ array(
+'size' => '8', 
+'maxlength' => '7',
+ ),
+),
+            );
 
-			$courseformatoptionsedit['collapseiconcolor'] = array(
-				'label' => get_string('collapseiconcolor', 'format_easycollapsible'),
+
+$courseformatoptionsedit['collapseiconcolor'] = array(
+'label' => get_string('collapseiconcolor', 'format_easycollapsible'),
                 'help' => 'collapseiconcolor',
                 'help_component' => 'format_easycollapsible',
                 'element_type' => 'text',
-				'element_attributes' => array(
-					 array(
-						'size' => '8', 
-						'maxlength' => '7',
-					 ),
-				),
+'element_attributes' => array(
+ array(
+'size' => '8', 
+'maxlength' => '7',
+ ),
+),
             );
-			
-			$courseformatoptionsedit['collapsetitlebackground'] = array(
-				'label' => get_string('collapsetitlebackground', 'format_easycollapsible'),
+
+$courseformatoptionsedit['collapsetitlebackground'] = array(
+'label' => get_string('collapsetitlebackground', 'format_easycollapsible'),
                 'help' => 'collapsetitlebackground',
                 'help_component' => 'format_easycollapsible',
                 'element_type' => 'text',
-				'element_attributes' => array(
-					 array(
-						'size' => '8', 
-						'maxlength' => '7',
-					 ),
-				),
+'element_attributes' => array(
+ array(
+'size' => '8', 
+'maxlength' => '7',
+ ),
+),
             );
 
-			$courseformatoptionsedit['collapsetitlecolor'] = array(
-				'label' => get_string('collapsetitlecolor', 'format_easycollapsible'),
+$courseformatoptionsedit['collapsetitlecolor'] = array(
+'label' => get_string('collapsetitlecolor', 'format_easycollapsible'),
                 'help' => 'collapsetitlecolor',
                 'help_component' => 'format_easycollapsible',
                 'element_type' => 'text',
-				'element_attributes' => array(
-					 array(
-						'size' => '8', 
-						'maxlength' => '7',
-					 ),
-				),
-            );			
+'element_attributes' => array(
+ array(
+'size' => '8', 
+'maxlength' => '7',
+ ),
+),
+            );
 
-			
-			$courseformatoptionsedit['collapsetitlebordercolor'] = array(
-				'label' => get_string('collapsetitlebordercolor', 'format_easycollapsible'),
+
+$courseformatoptionsedit['collapsetitlebordercolor'] = array(
+'label' => get_string('collapsetitlebordercolor', 'format_easycollapsible'),
                 'help' => 'collapsetitlebordercolor',
                 'help_component' => 'format_easycollapsible',
                 'element_type' => 'text',
-				'element_attributes' => array(
-					 array(
-						'size' => '8', 
-						'maxlength' => '7',
-					 ),
-				),
+'element_attributes' => array(
+ array(
+'size' => '8', 
+'maxlength' => '7',
+ ),
+),
             );
-			
-			$courseformatoptionsedit['collapsetopicsspacing'] = array(
-				'label' => get_string('collapsetopicsspacing', 'format_easycollapsible'),
+
+$courseformatoptionsedit['collapsetopicsspacing'] = array(
+'label' => get_string('collapsetopicsspacing', 'format_easycollapsible'),
                 'help' => 'collapsetopicsspacing',
                 'help_component' => 'format_easycollapsible',
                 'element_type' => 'text',
-				'element_attributes' => array(
-					 array(
-						'size' => '3', 
-						'maxlength' => '2',
-					 ),
-				),
+'element_attributes' => array(
+ array(
+'size' => '3', 
+'maxlength' => '2',
+ ),
+),
             );
-			
+
             $courseformatoptions = array_merge_recursive($courseformatoptions, $courseformatoptionsedit);
         }
         return $courseformatoptions;
