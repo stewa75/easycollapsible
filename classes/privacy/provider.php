@@ -25,9 +25,9 @@
  *
  */
 
+namespace format_easycollapsible\privacy;
 defined('MOODLE_INTERNAL') || die();
 
-namespace format_easycollapsible\privacy;
  
 class provider implements
     // This plugin does not store any personal user data.
