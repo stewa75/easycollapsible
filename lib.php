@@ -47,11 +47,6 @@ class format_easycollapsible extends format_topics {
                 'default' => $sectionscount,
                 'type' => PARAM_INT
             );
-            /* Collapse hidden topic format Op */
-            /* $courseformatoptions['hiddensections'] = array(
-            'default' => $courseconfig->hiddensections,
-            'type' => PARAM_INT,
-            );*/
             /* Collapse first topic Op */
             if (!get_config('format_easycollapsible', 'collapsefirst')) {
                 $courseformatoptions['collapsefirst'] = array(
@@ -151,13 +146,11 @@ class format_easycollapsible extends format_topics {
             /* Topic Spacing Op */
             if (!get_config('format_easycollapsible', 'collapsetopicsspacing')) {
                 $courseformatoptions['collapsetopicsspacing'] = array(
-                    //'default' => get_config('format_easycollapsible', 'collapsetopicsspacing'),
                     'default' => 10,
                     'type' => PARAM_INT
                 );
             } else {
                 $courseformatoptions['collapsetopicsspacing'] = array(
-                    //'default' => get_config('format_easycollapsible', 'collapsetopicsspacing'),
                     'default' => get_config('format_easycollapsible', 'collapsetopicsspacing'),
                     'type' => PARAM_INT
                 );
@@ -180,19 +173,6 @@ class format_easycollapsible extends format_topics {
                     $sectionmenu
                 )
             );
-            /*
-            $courseformatoptionsedit['hiddensections'] = array(
-            'label' => new lang_string('hiddensections'),
-            'help' => 'hiddensections',
-            'help_component' => 'moodle',
-            'element_type' => 'select',
-            'element_attributes' => array(
-            array(
-            0 => new lang_string('hiddensectionscollapsed'),
-            1 => new lang_string('hiddensectionsinvisible')
-            )
-            ),
-            );*/
             $courseformatoptionsedit['collapsefirst']            = array(
                 'label' => get_string('collapsefirst', 'format_easycollapsible'),
                 'help' => 'collapsefirst',
@@ -301,7 +281,7 @@ class format_easycollapsible extends format_topics {
                     )
                 )
             );
-            $courseformatoptions                                 = array_merge_recursive($courseformatoptions, $courseformatoptionsedit);
+            $courseformatoptions = array_merge_recursive($courseformatoptions, $courseformatoptionsedit);
         }
         return $courseformatoptions;
     }
