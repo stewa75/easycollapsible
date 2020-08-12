@@ -386,7 +386,8 @@ function format_easycollapsible_inplace_editable($itemtype, $itemid, $newvalue) 
     global $DB, $CFG;
     require_once($CFG->dirroot . '/course/lib.php');
     if ($itemtype === 'sectionname' || $itemtype === 'sectionnamenl') {
-        $section = $DB->get_record_sql('SELECT s.* FROM {course_sections} s JOIN {course} c ON s.course = c.id WHERE s.id = ? AND c.format = ?', array(
+		$ec_sql = 'SELECT s.* FROM {course_sections} s JOIN {course} c ON s.course = c.id WHERE s.id = ? AND c.format = ?';
+        $section = $DB->get_record_sql($ec_sql, array(
             $itemid,
             'topics'
         ), MUST_EXIST);
