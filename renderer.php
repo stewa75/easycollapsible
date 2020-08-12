@@ -83,8 +83,13 @@ class format_easycollapsible_renderer extends format_topics_renderer
             $classes = '';
         }
         /* Choose how to show the topic title, if linked or not */
-		$ecsection = $section->section;
-        if (($ecsection == 0) || ($course->collapsefirst == 1 && $ecsection == 1 || $course->collapsesecond == 1 && $ecsection == 2 || $course->collapselast == 1 && $ecsection == $course->numsections)) {
+        $ecsection = $section->section;
+        $ecfirst = $course->collapsefirst;
+        $ecsecond = $course->collapsesecond;
+        $eclast = $course->collapselast;
+        $ecnumsect = $course->numsections;
+		
+        if (($ecsection == 0) || ($ecfirst == 1 && $ecsection == 1 || $ecsecond == 1 && $ecsection == 2 || $eclast  == 1 && $ecsection == $ecnumsect)) {
             $sectionname = $section->name;
             $o .= $this->output->heading($sectionname, 3, 'sectionname' . $classes, "sectionid-{$section->id}-title");
         } else {
@@ -111,48 +116,42 @@ class format_easycollapsible_renderer extends format_topics_renderer
 			a.format-easycollapsible_fheader:before {
 			color: ' . $course->collapseiconcolor . '!important;
 			}
-			</style>
-			';
+			</style>';
         } else if ($course->collapseiconbackground && $course->collapseiconbackground != 0) {
             echo '
 			<style>
 			.format-easycollapsible_section .format-easycollapsible_topictitle {
 			background-color: ' . $course->collapsetitlebackground . '!important;		
 			}
-			</style>
-			';
+			</style>';
         } else if ($course->collapsetitlecolor && $course->collapsetitlecolor != 0) {
             echo '
 			<style>
 			.format-easycollapsible_section .format-easycollapsible_topictitle {
 			color: ' . $course->collapsetitlecolor . '!important;	
 			}
-			</style>
-			';
+			</style>';
         } else if ($course->collapsetitlebackground && $course->collapsetitlebackground != 0) {
             echo '
 			<style>
 			.format-easycollapsible_section .format-easycollapsible_topictitle {
 			background-color: ' . $course->collapsetitlebackground . '!important;
 			}
-			</style>
-			';
+			</style>';
         } else if ($course->collapsetitlebordercolor && $course->collapsetitlebordercolor != 0) {
             echo '
 			<style>
 			.format-easycollapsible_section .format-easycollapsible_topictitle {
 			border-bottom: ' . $course->collapsetitlebordercolor . '!important;
 			}
-			</style>
-			';
+			</style>';
         } else if ($course->collapsetopicsspacing) {
             echo '
 			<style>
 			.course-content ul li.format-easycollapsible_section.format-easycollapsible_main {
 					margin-bottom:' . $course->collapsetopicsspacing . 'px!important;
 			}
-			</style>
-			';
+			</style>';
         }
         $o .= html_writer::start_tag('div', array(
             'class' => 'summary'
