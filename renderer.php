@@ -37,7 +37,7 @@ class format_easycollapsible_renderer extends format_topics_renderer
         /* Include files general js and css that make Easycollapsible plugin works */
         echo '<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">';
         $ecstring = get_string('showhideall', 'format_easycollapsible');
-		echo '<button id="showhideallbtn" type="button" class="btn btn-primary">' .$ecstring. '</button>';
+        echo '<button id="showhideallbtn" type="button" class="btn btn-primary">'.$ecstring.'</button>';
         echo '<div id="easycollapsetopics">';
         return html_writer::start_tag('ul', array(
             'class' => 'topics'
@@ -74,9 +74,9 @@ class format_easycollapsible_renderer extends format_topics_renderer
         $o .= html_writer::start_tag('div', array(
             'class' => 'content'
         ));
-        // When not on a section page, we display the section titles except the general section if null
+        // When not on a section page, we display the section titles except the general section if null.
         $hasnamenotsecpg = (!$onsectionpage && ($section->section != 0 || !is_null($section->name)));
-        // When on a section page, we only display the general section title, if title is not the default one
+        // When on a section page, we only display the general section title, if title is not the default one.
         $hasnamesecpg    = ($onsectionpage && ($section->section == 0 && !is_null($section->name)));
         $classes         = ' accesshide';
         if ($hasnamenotsecpg || $hasnamesecpg) {
@@ -95,29 +95,24 @@ class format_easycollapsible_renderer extends format_topics_renderer
 			<style>
 			a.format-easycollapsible_fheader.closed:before {
 			background:' . $course->collapseiconbackground . '!important;
-
 			}
 			a.format-easycollapsible_fheader:before {
 			background:' . $course->collapseiconbackground . '!important;
-
 			}
-			
 			</style>
 			';
-        } elseif ($course->collapseiconcolor && $course->collapseiconcolor != 0) {
+        } else if ($course->collapseiconcolor && $course->collapseiconcolor != 0) {
             echo '
 			<style>
 			a.format-easycollapsible_fheader.closed:before {
-
 			color: ' . $course->collapseiconcolor . '!important;
 			}
 			a.format-easycollapsible_fheader:before {
-
 			color: ' . $course->collapseiconcolor . '!important;
 			}
 			</style>
 			';
-        } elseif ($course->collapseiconbackground && $course->collapseiconbackground != 0) {
+        } else if ($course->collapseiconbackground && $course->collapseiconbackground != 0) {
             echo '
 			<style>
 			.format-easycollapsible_section .format-easycollapsible_topictitle {
@@ -125,7 +120,7 @@ class format_easycollapsible_renderer extends format_topics_renderer
 			}
 			</style>
 			';
-        } elseif ($course->collapsetitlecolor && $course->collapsetitlecolor != 0) {
+        } else if ($course->collapsetitlecolor && $course->collapsetitlecolor != 0) {
             echo '
 			<style>
 			.format-easycollapsible_section .format-easycollapsible_topictitle {
@@ -133,7 +128,7 @@ class format_easycollapsible_renderer extends format_topics_renderer
 			}
 			</style>
 			';
-        } elseif ($course->collapsetitlebackground && $course->collapsetitlebackground != 0) {
+        } else if ($course->collapsetitlebackground && $course->collapsetitlebackground != 0) {
             echo '
 			<style>
 			.format-easycollapsible_section .format-easycollapsible_topictitle {
@@ -141,7 +136,7 @@ class format_easycollapsible_renderer extends format_topics_renderer
 			}
 			</style>
 			';
-        } elseif ($course->collapsetitlebordercolor && $course->collapsetitlebordercolor != 0) {
+        } else if ($course->collapsetitlebordercolor && $course->collapsetitlebordercolor != 0) {
             echo '
 			<style>
 			.format-easycollapsible_section .format-easycollapsible_topictitle {
@@ -149,7 +144,7 @@ class format_easycollapsible_renderer extends format_topics_renderer
 			}
 			</style>
 			';
-        } elseif ($course->collapsetopicsspacing) {
+        } else if ($course->collapsetopicsspacing) {
             echo '
 			<style>
 			.course-content ul li.format-easycollapsible_section.format-easycollapsible_main {
@@ -179,8 +174,7 @@ class format_easycollapsible_renderer extends format_topics_renderer
      * @param array $modnames (argument not used)
      * @param array $modnamesused (argument not used)
      */
-    public function print_multiple_section_page($course, $sections, $mods, $modnames, $modnamesusedn)
-    {
+    public function print_multiple_section_page($course, $sections, $mods, $modnames, $modnamesusedn) {
         $modinfo        = get_fast_modinfo($course);
         $course         = course_get_format($course)->get_course();
         $context        = context_course::instance($course->id);
@@ -188,14 +182,14 @@ class format_easycollapsible_renderer extends format_topics_renderer
         $completioninfo = new completion_info($course);
         echo $completioninfo->display_help_icon();
         echo $this->output->heading($this->page_title(), 2, 'accesshide');
-        // Copy activity clipboard..
+        // Copy activity clipboard.
         echo $this->course_activity_clipboard($course, 0);
-        // Now the list of sections..
+        // Now the list of sections.
         echo $this->start_section_list();
         $numsections = course_get_format($course)->get_last_section_number();
         foreach ($modinfo->get_section_info_all() as $section => $thissection) {
             if ($section == 0) {
-                // 0-section is displayed a little different then the others
+                // 0-section is displayed a little different then the others.
                 if ($thissection->summary or !empty($modinfo->sections[0]) or $this->page->user_is_editing()) {
                     echo $this->section_header($thissection, $course, false, 0);
                     echo $this->courserenderer->course_section_cm_list($course, $thissection, 0);
@@ -205,10 +199,10 @@ class format_easycollapsible_renderer extends format_topics_renderer
                 continue;
             }
             if ($section > $numsections) {
-                // activities inside this section are 'orphaned', this section will be printed as 'stealth' below
+                // activities inside this section are 'orphaned', this section will be printed as 'stealth' below.
                 continue;
             }
-            // Show the section if the user is permitted to access it, OR if it's not available
+            // Show the section if the user is permitted to access it, OR if it's not available.
             // but there is some available info text which explains the reason & should display,
             // OR it is hidden but the course has a setting to display hidden sections as unavilable.
             $showsection = $thissection->uservisible || ($thissection->visible && !$thissection->available && !empty($thissection->availableinfo)) || (!$thissection->visible && !$course->hiddensections);
@@ -238,7 +232,7 @@ class format_easycollapsible_renderer extends format_topics_renderer
             // Print stealth sections if present.
             foreach ($modinfo->get_section_info_all() as $section => $thissection) {
                 if ($section <= $numsections or empty($modinfo->sections[$section])) {
-                    // this is not stealth section or it is empty
+                    // this is not stealth section or it is empty.
                     continue;
                 }
                 echo $this->stealth_section_header($section);
