@@ -1,7 +1,7 @@
 @charset "UTF-8";
 /* CSS Document for Easycollapsible plugin */
 a.format-easycollapsible_fheader.format-easycollapsible_showed:before {
-    background: #C11600;
+    background: #c11600;
     color: #fff;
     content: "\f107";
     float: left;
@@ -25,7 +25,7 @@ a.format-easycollapsible_fheader:before {
     width: 33px;
 }
 .format-easycollapsible_section .format-easycollapsible_topictitle {
-    color: #333333;
+    color: #333;
     background-color: #f5f5f5;
     border-bottom: #ddd 1px solid;
     line-height: 30px;
@@ -39,14 +39,14 @@ a.format-easycollapsible_fheader:before {
     float: none;
 }
 div.format-easycollapsible_multi-collapse.format-easycollapsible {
-    height: 0px!important;
-    transition: height .35s ease!important;
+    height: 0px;
+    transition: height .35s ease;
     overflow: hidden;
 }
 div.format-easycollapsible_multi-collapse.format-easycollapsible.format-easycollapsible_showed {
-    height: auto!important;
-    transition: height .35s ease!important;
+    height: auto;
+    transition: height .35s ease;
 }
 .course-content ul li.format-easycollapsible_section.format-easycollapsible_main {
-    margin-bottom: 0px!important;
+    margin-bottom: 0px;
 }
