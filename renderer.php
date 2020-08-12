@@ -204,7 +204,11 @@ class format_easycollapsible_renderer extends format_topics_renderer
             // Show the section if the user is permitted to access it, OR if it's not available.
             // but there is some available info text which explains the reason & should display,
             // OR it is hidden but the course has a setting to display hidden sections as unavilable.
-            $showsection = $thissection->uservisible || ($thissection->visible && !$thissection->available && !empty($thissection->availableinfo)) || (!$thissection->visible && !$course->hiddensections);
+			$condition1 = $thissection->visible;
+			$condition2 = $thissection->available;
+			$condition3 = $thissection->availableinfo;
+			$condition4 = $course->hiddensections;
+            $showsection = $thissection->uservisible || ($condition1 && !$condition2 && !empty($condition3)) || (!$condition1 && !$condition4);
             if (!$showsection) {
                 continue;
             }
@@ -215,7 +219,7 @@ class format_easycollapsible_renderer extends format_topics_renderer
                 echo $this->section_header($thissection, $course, false, 0);
                 if ($thissection->uservisible) {
                     /* Choose how to show the div if visible or not */
-                    $ecsection = $thissection->section ;
+                    $ecsection = $thissection->section;
                     $ecfirst = $course->collapsefirst;
                     $ecsecond = $course->collapsesecond;
                     $eclast = $course->collapselast;
