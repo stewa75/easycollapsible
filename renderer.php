@@ -83,7 +83,8 @@ class format_easycollapsible_renderer extends format_topics_renderer
             $classes = '';
         }
         /* Choose how to show the topic title, if linked or not */
-        if (($section->section == 0) || ($course->collapsefirst == 1 && $section->section == 1 || $course->collapsesecond == 1 && $section->section == 2 || $course->collapselast == 1 && $section->section == $course->numsections)) {
+		$ecsection = $section->section;
+        if (($ecsection == 0) || ($course->collapsefirst == 1 && $ecsection == 1 || $course->collapsesecond == 1 && $ecsection == 2 || $course->collapselast == 1 && $ecsection == $course->numsections)) {
             $sectionname = $section->name;
             $o .= $this->output->heading($sectionname, 3, 'sectionname' . $classes, "sectionid-{$section->id}-title");
         } else {
