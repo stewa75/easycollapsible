@@ -1,6 +1,6 @@
 @charset "UTF-8";
 /* CSS Document for Easycollapsible plugin */
- a.format-easycollapsible_fheader.format-easycollapsible_showed:before {	
+a.format-easycollapsible_fheader.format-easycollapsible_showed:before {
     background: #C11600;
     color: #fff;
     content: "\f107";
@@ -11,9 +11,9 @@
     padding: 1px;
     text-align: center;
     width: 33px;
- }
- a.format-easycollapsible_fheader:before {
-    background: #C11600;
+}
+a.format-easycollapsible_fheader:before {
+    background: #c11600;
     color: #fff;
     content: "\f105";
     float: left;
@@ -23,27 +23,30 @@
     padding: 1px;
     text-align: center;
     width: 33px;
- }
- .format-easycollapsible_section .format-easycollapsible_topictitle {
+}
+.format-easycollapsible_section .format-easycollapsible_topictitle {
     color: #333333;
     background-color: #f5f5f5;
-    border-bottom: #ddd 1px solid;;
+    border-bottom: #ddd 1px solid;
     line-height: 30px;
     margin-left: 8px;
     margin-right: 1px;
- }
- .format-easycollapsible_section .format-easycollapsible_side.format-easycollapsible_right, .format-easycollapsible_section .format-easycollapsible_side.format-easycollapsible_left {
+}
+.format-easycollapsible_section .format-easycollapsible_side.format-easycollapsible_right {
     float: none;
- }
- div.format-easycollapsible_multi-collapse.format-easycollapsible{
+}
+.format-easycollapsible_section .format-easycollapsible_side.format-easycollapsible_left {
+    float: none;
+}
+div.format-easycollapsible_multi-collapse.format-easycollapsible {
     height: 0px!important;
     transition: height .35s ease!important;
     overflow: hidden;
- }
- div.format-easycollapsible_multi-collapse.format-easycollapsible.format-easycollapsible_showed{
-    height:auto!important;
+}
+div.format-easycollapsible_multi-collapse.format-easycollapsible.format-easycollapsible_showed {
+    height: auto!important;
     transition: height .35s ease!important;
- }
- .course-content ul li.format-easycollapsible_section.format-easycollapsible_main {
-    margin-bottom:0px!important;
- }
+}
+.course-content ul li.format-easycollapsible_section.format-easycollapsible_main {
+    margin-bottom: 0px!important;
+}
