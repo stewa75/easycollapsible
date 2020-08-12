@@ -17,7 +17,6 @@
 /*
  *
  * @package    format_easycollapsible
- * @version    See the value of '$plugin->version' in below.
  * @copyright  2020 Stefano Mura
  * @author     Stefano Mura
  * @link       https://www.linkedin.com/in/stefanomura75/
@@ -31,4 +30,4 @@ $plugin->version = 2020071601;
 $plugin->maturity = MATURITY_STABLE;
 $plugin->requires  = 2019111800.00;
 $plugin->component = 'format_easycollapsible';
-$plugin->release = '1.7.2';
+$plugin->release = '1.8';

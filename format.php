@@ -16,7 +16,6 @@
 /*
  *
  * @package    format_easycollapsible
- * @version    See the value of '$plugin->version' in below.
  * @copyright  2020 Stefano Mura
  * @author     Stefano Mura
  * @link       https://www.linkedin.com/in/stefanomura75/
