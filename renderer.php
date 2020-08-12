@@ -88,8 +88,7 @@ class format_easycollapsible_renderer extends format_topics_renderer
         $ecsecond = $course->collapsesecond;
         $eclast = $course->collapselast;
         $ecnumsect = $course->numsections;
-		
-        if (($ecsection == 0) || ($ecfirst == 1 && $ecsection == 1 || $ecsecond == 1 && $ecsection == 2 || $eclast  == 1 && $ecsection == $ecnumsect)) {
+        if (($ecsection == 0) || ($ecfirst == 1 && $ecsection == 1 || $ecsecond == 1 && $ecsection == 2 || $eclast == 1 && $ecsection == $ecnumsect)) {
             $sectionname = $section->name;
             $o .= $this->output->heading($sectionname, 3, 'sectionname' . $classes, "sectionid-{$section->id}-title");
         } else {
@@ -121,14 +120,14 @@ class format_easycollapsible_renderer extends format_topics_renderer
             echo '
 			<style>
 			.format-easycollapsible_section .format-easycollapsible_topictitle {
-			background-color: ' . $course->collapsetitlebackground . '!important;		
+			background-color: ' . $course->collapsetitlebackground . '!important;
 			}
 			</style>';
         } else if ($course->collapsetitlecolor && $course->collapsetitlecolor != 0) {
             echo '
 			<style>
 			.format-easycollapsible_section .format-easycollapsible_topictitle {
-			color: ' . $course->collapsetitlecolor . '!important;	
+			color: ' . $course->collapsetitlecolor . '!important;
 			}
 			</style>';
         } else if ($course->collapsetitlebackground && $course->collapsetitlebackground != 0) {
@@ -216,7 +215,12 @@ class format_easycollapsible_renderer extends format_topics_renderer
                 echo $this->section_header($thissection, $course, false, 0);
                 if ($thissection->uservisible) {
                     /* Choose how to show the div if visible or not */
-                    if ($course->collapsefirst == 1 && $thissection->section == 1 || $course->collapsesecond == 1 && $thissection->section == 2 || $course->collapselast == 1 && $thissection->section == $course->numsections) {
+                    $ecsection = $thissection->section ;
+                    $ecfirst = $course->collapsefirst;
+                    $ecsecond = $course->collapsesecond;
+                    $eclast = $course->collapselast;
+                    $ecnumsect = $course->numsections;
+                    if ($ecfirst == 1 && $ecsection == 1 || $ecsecond == 1 && $ecsectionn == 2 || $eclast == 1 && $ecsection == $ecnumsect) {
                         echo '<div class="format-easycollapsible format-easycollapsible_showed" id="collapsible-' . $thissection->id . '" >';
                     } else {
                         echo '<div class="format-easycollapsible format-easycollapsible_multi-collapse" id="collapsible-' . $thissection->id . '">';
@@ -232,7 +236,7 @@ class format_easycollapsible_renderer extends format_topics_renderer
             // Print stealth sections if present.
             foreach ($modinfo->get_section_info_all() as $section => $thissection) {
                 if ($section <= $numsections or empty($modinfo->sections[$section])) {
-                    // this is not stealth section or it is empty.
+                    // This is not stealth section or it is empty.
                     continue;
                 }
                 echo $this->stealth_section_header($section);
@@ -249,8 +253,7 @@ class format_easycollapsible_renderer extends format_topics_renderer
      * Generate the closing container html for a list of sections
      * @return string HTML to output.
      */
-    protected function end_section_list()
-    {
+    protected function end_section_list() {
         return html_writer::end_tag('ul');
         echo '</div>';
     }
