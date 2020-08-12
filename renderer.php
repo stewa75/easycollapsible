@@ -36,14 +36,14 @@ class format_easycollapsible_renderer extends format_topics_renderer
     protected function start_section_list() {
         /* Include files general js and css that make Easycollapsible plugin works */
         echo '<link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">';
-        echo '<button id="showhideallbtn" type="button" class="btn btn-primary">' . get_string('showhideall', 'format_easycollapsible') . '</button>';
+        $ecstring = get_string('showhideall', 'format_easycollapsible');
+		echo '<button id="showhideallbtn" type="button" class="btn btn-primary">' .$ecstring. '</button>';
         echo '<div id="easycollapsetopics">';
         return html_writer::start_tag('ul', array(
             'class' => 'topics'
         ));
     }
-    protected function section_header($section, $course, $onsectionpage, $sectionreturn = null)
-    {
+    protected function section_header($section, $course, $onsectionpage, $sectionreturn = null) {
         $o            = '';
         $currenttext  = '';
         $sectionstyle = '';
