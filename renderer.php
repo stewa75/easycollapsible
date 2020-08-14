@@ -223,11 +223,11 @@ class format_easycollapsible_renderer extends format_topics_renderer
                 if ($thissection->uservisible) {
                     /* Choose how to show the div if visible or not */
                     $ecsec = $thissection->section;
-                    $ecfir = $course->collapsefirst;
-                    $ecsec = $course->collapsesecond;
+                    $ec1 = $course->collapsefirst;
+                    $ec2 = $course->collapsesecond;
                     $eclas = $course->collapselast;
                     $ecnum = $course->numsections;
-                    if ($ecfirs == 1 && $ecsec == 1 || $ecsec == 1 && $ecsec == 2 || $eclas == 1 && $ecsec == $ecnum) {
+                    if ($ec1 == 1 && $ecsec == 1 || $ec2 == 1 && $ecsec == 2 || $eclas == 1 && $ecsec == $ecnum) {
                         $ecclass = 'format-easycollapsible format-easycollapsible_showed';
                         echo '<div class="'.$ecclass.'" id="collapsible-' . $thissection->id . '" >';
                     } else {
