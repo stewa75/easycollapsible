@@ -87,11 +87,15 @@ class format_easycollapsible_renderer extends format_topics_renderer
         $ecsecond = $course->collapsesecond;
         $eclast = $course->collapselast;
         $ecnumsect = $course->numsections;
-        if (($ecsection == 0) || ($ecfirst == 1 && $ecsection == 1 || $ecsecond == 1 && $ecsection == 2 || $eclast == 1 && $ecsection == $ecnumsect)) {
+        $eccondition1 = $ecfirst == 1 && $ecsection == 1;
+        $eccondition2 = $ecsecond == 1 && $ecsection == 2;
+        $eccondition3 = $eclast == 1 && $ecsection == $ecnumsect;
+        if (($ecsection == 0) || ($eccondition1 || $eccondition2 || $eccondition3)) {
             $sectionname = $section->name;
             $o .= $this->output->heading($sectionname, 3, 'sectionname' . $classes, "sectionid-{$section->id}-title");
         } else {
-            $sectionname = '<a href="#collapsible-' . $section->id . '" class="format-easycollapsible_fheader" >' . $section->name . '</a>';
+            $ecahref = '<a href="#collapsible-' . $section->id . '" class="format-easycollapsible_fheader" >';
+            $sectionname = $ecahref . $section->name . '</a>';
             $o .= '<div class="format-easycollapsible_topictitle">' . $sectionname . '</div>';
         }
         if ($course->collapseiconbackground && $course->collapseiconbackground != 0) {
@@ -197,17 +201,17 @@ class format_easycollapsible_renderer extends format_topics_renderer
                 continue;
             }
             if ($section > $numsections) {
-                // activities inside this section are 'orphaned', this section will be printed as 'stealth' below.
+                // Activities inside this section are 'orphaned', this section will be printed as 'stealth' below.
                 continue;
             }
             // Show the section if the user is permitted to access it, OR if it's not available.
             // but there is some available info text which explains the reason & should display,
             // OR it is hidden but the course has a setting to display hidden sections as unavilable.
-            $condition1 = $thissection->visible;
-            $condition2 = $thissection->available;
-            $condition3 = $thissection->availableinfo;
-            $condition4 = $course->hiddensections;
-            $showsection = $thissection->uservisible || ($condition1 && !$condition2 && !empty($condition3)) || (!$condition1 && !$condition4);
+            $eccon1 = $thissection->visible;
+            $eccon2 = $thissection->available;
+            $eccon3 = $thissection->availableinfo;
+            $eccon4 = $course->hiddensections;
+            $showsection = $thissection->uservisible || ($eccon1 && !$eccon2 && !empty($eccon3)) || (!$eccon1 && !$eccon4);
             if (!$showsection) {
                 continue;
             }
@@ -218,15 +222,17 @@ class format_easycollapsible_renderer extends format_topics_renderer
                 echo $this->section_header($thissection, $course, false, 0);
                 if ($thissection->uservisible) {
                     /* Choose how to show the div if visible or not */
-                    $ecsection = $thissection->section;
-                    $ecfirst = $course->collapsefirst;
-                    $ecsecond = $course->collapsesecond;
-                    $eclast = $course->collapselast;
-                    $ecnumsect = $course->numsections;
-                    if ($ecfirst == 1 && $ecsection == 1 || $ecsecond == 1 && $ecsectionn == 2 || $eclast == 1 && $ecsection == $ecnumsect) {
-                        echo '<div class="format-easycollapsible format-easycollapsible_showed" id="collapsible-' . $thissection->id . '" >';
+                    $ecsec = $thissection->section;
+                    $ecfir = $course->collapsefirst;
+                    $ecsec = $course->collapsesecond;
+                    $eclas = $course->collapselast;
+                    $ecnum = $course->numsections;
+                    if ($ecfirs == 1 && $ecsec == 1 || $ecsec == 1 && $ecsec == 2 || $eclas == 1 && $ecsec == $ecnum) {
+                        $ecclass = 'format-easycollapsible format-easycollapsible_showed';
+                        echo '<div class="'.$ecclass.'" id="collapsible-' . $thissection->id . '" >';
                     } else {
-                        echo '<div class="format-easycollapsible format-easycollapsible_multi-collapse" id="collapsible-' . $thissection->id . '">';
+                        $ecclass = 'format-easycollapsible format-easycollapsible_multi-collapse';
+                        echo '<div class="'.$ecclass.'" id="collapsible-' . $thissection->id . '">';
                     }
                     echo $this->courserenderer->course_section_cm_list($course, $thissection, 0);
                     echo $this->courserenderer->course_section_add_cm_control($course, $section, 0);
